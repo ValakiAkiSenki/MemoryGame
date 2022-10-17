@@ -1,0 +1,59 @@
+.grid-container{
+    display: grid;
+    justify-content: center;
+    gap: 5px;
+
+	perspective: 4000px;	
+}
+
+.grid-container > div{
+    border: solid 1px;
+}
+
+
+
+  
+.card {
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+}
+  
+.face {
+    width:100%;
+    height:100%;
+    
+    color:#FFF;
+    line-height:10em;
+    text-align:center;
+    position:absolute;
+    
+    backface-visibility:hidden;
+}
+  
+.front {
+    background-color:aqua;
+}
+  
+.back {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png");
+    background-size: cover;
+    transform: rotateY(180deg);
+}
+
+.ani{
+	animation: rotateAnimation 1s linear forwards;
+}
+
+.aniB{
+	animation: rotateAnimationB 1s linear forwards;
+}
+
+@keyframes rotateAnimation {
+	from {transform: rotateY(0deg);}
+	to {transform: rotateY(180deg);}
+}
+
+@keyframes rotateAnimationB {
+	from {transform: rotateY(180deg);}
+	to {transform: rotateY(0deg);}
+}
