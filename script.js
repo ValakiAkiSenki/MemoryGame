@@ -1,6 +1,6 @@
 let container = document.querySelector(".grid-container");
-const C_height = 5;
-const C_width = 7;
+const C_height = 4;
+const C_width = 6;
 const C_cardHeight = 80;
 let cardValues = [];
 let cards = [];
@@ -16,6 +16,7 @@ function main(){
         let asd = document.createElement("div");
         asd.classList.add("card");
         asd.classList.add("item");
+        asd.dataset.value = cardValues[i];
         asd.id = "a"+i;
         
         let front = document.createElement("div");
@@ -58,8 +59,18 @@ function EventOnClick(e){
     if (cards.includes(qwe.id)) return;
     //#endregion
 
-    //#region if it's the 3rd card removes everything from the caards list
+    //#region if it's the 3rd card removes everything from the cards list
     if (cards.length >= 2){
+        const a = document.querySelector("#" + cards[0]);
+        const b = document.querySelector("#" + cards[1]);
+        if (a.dataset.value == b.dataset.value) {
+            a.removeEventListener("click", EventOnClick);
+            b.removeEventListener("click", EventOnClick);
+            
+            cards = [];
+        }
+
+
         cards.forEach(element => {
             let asd = document.querySelector("#" + element);
             asd.classList.remove("ani")
@@ -84,8 +95,8 @@ function EventOnClick(e){
 }
 
 function GenerateCardValues() {
-    for (let i = 0; i < C_height*C_width; i++) {
-        cardValues.push(i - Math.ceil(i/2));
+    for (let i = 1; i <= C_height*C_width; i++) {
+        cardValues.push(i - Math.floor(i/2));
     }
 }
 
